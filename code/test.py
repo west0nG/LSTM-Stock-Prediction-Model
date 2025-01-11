@@ -22,7 +22,7 @@ plt.title('Training and Validation Loss')
 plt.legend()
 plt.show()
 
-file_path = '/Users/weston/Desktop/Quant/ford_row_stock_data.csv'
+file_path = '../data/ford_row_stock_data.csv'
 row_data = pd.read_csv(file_path)
 
 train_num = int(row_data.shape[0] * 0.8)

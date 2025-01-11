@@ -6,7 +6,7 @@ from tensorflow import keras
 from tensorflow.keras import layers
 from sklearn.preprocessing import StandardScaler
 
-file_path = '/Users/weston/Desktop/Quant/ford_row_stock_data.csv'
+file_path = '../data/ford_row_stock_data.csv'
 row_data = pd.read_csv(file_path)
 
 train_num = int(row_data.shape[0] * 0.8)
@@ -65,8 +65,8 @@ epochs = 1000
 history = model.fit(train_ds, epochs=epochs, validation_data=val_ds)
 model.evaluate(test_ds)
 
-model.save('/Users/weston/Desktop/Quant/epoachs1000_window30.keras')
-np.save('/Users/weston/Desktop/Quant/epoachs1000_window30_history.npy', history.history)
+model.save('')
+np.save('', history.history)
 
 
 
