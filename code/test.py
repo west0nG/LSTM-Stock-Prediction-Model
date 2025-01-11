@@ -7,10 +7,10 @@ from tensorflow.keras import layers
 from sklearn.preprocessing import StandardScaler
 
 # Load the saved model
-model = keras.models.load_model('/Users/weston/Desktop/Quant/epoachs1000_window30.keras')
+model = keras.models.load_model('')
 
 # Load the training history
-history = np.load('/Users/weston/Desktop/Quant/epoachs1000_window30_history.npy', allow_pickle=True).item()
+history = np.load('', allow_pickle=True).item()
 
 # Plot the training and validation loss
 plt.figure(figsize=(10, 6))
