@@ -7,12 +7,12 @@ from tensorflow.keras import layers
 from sklearn.preprocessing import StandardScaler
 
 # Load the saved model
-model = keras.models.load_model('./model/E2000W15.keras')
+model = keras.models.load_model('./model/E1000W60.keras')
 
 # Load the training history
-history = np.load('./model/E2000W15.npy', allow_pickle=True).item()
+history = np.load('./model/E2000W60.npy', allow_pickle=True).item()
 
-window = 15
+window = 60
 
 # Plot the training and validation loss
 plt.figure(figsize=(10, 6))
