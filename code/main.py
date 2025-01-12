@@ -10,7 +10,7 @@ from tensorflow.keras.callbacks import ModelCheckpoint
 
 
 epochs = 2000
-window = 30
+window = 15
 
 file_path = './data/ford_row_stock_data.csv'
 row_data = pd.read_csv(file_path)
@@ -69,7 +69,7 @@ model.summary()
 model.compile(optimizer=keras.optimizers.Adam(0.001), loss=tf.keras.losses.MeanAbsoluteError())
 
 checkpoint_callback = ModelCheckpoint(
-    filepath='./model/E{epoch:04d}W30.keras',
+    filepath='./model/E{epoch:04d}W15.keras',
     save_freq=200 * len(train_ds),  # Save every 200 epochs
     save_weights_only=False,
     verbose=1
@@ -78,8 +78,8 @@ checkpoint_callback = ModelCheckpoint(
 history = model.fit(train_ds, epochs=epochs, validation_data=val_ds,callbacks=[checkpoint_callback])
 model.evaluate(test_ds)
 
-model.save('./model/E2000W30.keras')
-np.save('./model/E2000W30.npy', history.history)
+model.save('./model/E2000W15.keras')
+np.save('./model/E2000W15.npy', history.history)
 
 
 

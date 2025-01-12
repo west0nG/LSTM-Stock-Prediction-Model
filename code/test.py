@@ -7,10 +7,12 @@ from tensorflow.keras import layers
 from sklearn.preprocessing import StandardScaler
 
 # Load the saved model
-model = keras.models.load_model('./model/E2000W30.keras')
+model = keras.models.load_model('./model/E2000W15.keras')
 
 # Load the training history
-history = np.load('./model/E2000W30.npy', allow_pickle=True).item()
+history = np.load('./model/E2000W15.npy', allow_pickle=True).item()
+
+window = 15
 
 # Plot the training and validation loss
 plt.figure(figsize=(10, 6))
@@ -48,13 +50,13 @@ def window_size(dataset, start_point, end_point, step_length, window_size):
 
     return np.array(data), np.array(labels)
 
-x_test, y_test = window_size(dataset=final_data, start_point=train_num + val_num, end_point=train_num + val_num + test_num, step_length=1, window_size=30)
+x_test, y_test = window_size(dataset=final_data, start_point=train_num + val_num, end_point=train_num + val_num + test_num, step_length=1, window_size=window)
 
 
 predictions = model.predict(x_test)
 
 # Extract the actual "close" values (assuming "close" is the 6th column in the original dataset)
-actual_close_values = final_data_df.iloc[train_num + val_num + 30:train_num + val_num + test_num + 30, 3].values
+actual_close_values = final_data_df.iloc[train_num + val_num + window:train_num + val_num + test_num + window, 3].values
 
 # Plot the comparison
 plt.figure(figsize=(14, 7))
