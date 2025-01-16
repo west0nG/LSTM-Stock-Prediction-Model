@@ -4,6 +4,7 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import StandardScaler
+import joblib
 
 model1 = tf.keras.models.load_model('./model/E1000W60.keras')
 model2 = tf.keras.models.load_model('./model/E2000W30.keras')
@@ -58,31 +59,7 @@ reg = LinearRegression().fit(X, y)
 
 y_pred = reg.predict(X)
 
-print(1)
-print(reg.coef_)
-
-profit = y_pred - y
-accumulated_profit = np.cumsum(profit)
-
-plt.figure(figsize=(10, 6))
-plt.plot(y, label='Actual')
-plt.plot(y_pred, label='Predicted')
-plt.xlabel('Time Steps')
-plt.ylabel('Close Values')
-plt.title('Actual vs Predicted Close Values')
-plt.legend()
-plt.show()
-
-plt.figure(figsize=(10, 6))
-plt.plot(accumulated_profit, label='Accumulated Profit')
-plt.xlabel('Time Steps')
-plt.ylabel('Profit')
-plt.title('Accumulated Profit')
-plt.legend()
-plt.show()
-
-
-
+joblib.dump(reg, './model/reg.pkl')
 
 
 
