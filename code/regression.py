@@ -61,7 +61,8 @@ y_pred = reg.predict(X)
 print(1)
 print(reg.coef_)
 
-y_pred = reg.predict(X)
+profit = y_pred - y
+accumulated_profit = np.cumsum(profit)
 
 plt.figure(figsize=(10, 6))
 plt.plot(y, label='Actual')
@@ -71,6 +72,18 @@ plt.ylabel('Close Values')
 plt.title('Actual vs Predicted Close Values')
 plt.legend()
 plt.show()
+
+plt.figure(figsize=(10, 6))
+plt.plot(accumulated_profit, label='Accumulated Profit')
+plt.xlabel('Time Steps')
+plt.ylabel('Profit')
+plt.title('Accumulated Profit')
+plt.legend()
+plt.show()
+
+
+
+
 
 
 
