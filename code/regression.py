@@ -59,10 +59,18 @@ reg = LinearRegression().fit(X, y)
 
 y_pred = reg.predict(X)
 
-joblib.dump(reg, './model/reg.pkl')
+print(f'Coefficients: {reg.coef_}')
+print(f'Intercept: {reg.intercept_}')
 
+def inverse_transform_single_value(scaler, value, feature_index, num_features):
+    temp_array = np.zeros((1, num_features))
+    temp_array[0, feature_index] = value
+    return scaler.inverse_transform(temp_array)[0, feature_index]
 
-
+# Inverse transform the specific value
+single_value = -0.04576793313026428
+inverse_transformed_value = inverse_transform_single_value(scaler, single_value, 3, final_data.shape[1])
+print(f'Inverse transformed value: {inverse_transformed_value}')
 
 
 
